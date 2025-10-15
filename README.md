@@ -157,8 +157,6 @@ Mock data includes 10 companies and 10 datapoints for testing.
 
 Mappings and templates persist until the Docker volumes are deleted.
 
-👨‍💻 Maintainers
-Lead Developer: [Your Name]
 
 Frontend: Vue.js
 
