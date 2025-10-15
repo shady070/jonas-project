@@ -16,10 +16,14 @@ This project provides two main modules:
 ---
 
 ### 2️⃣ Clone the Project
-```bash
-git clone https://github.com/<your_repo_name>.git
-cd vue-pdf-form-demo
-3️⃣ Start the Containers
+
+git clone https://github.com/jonas-project.git
+
+cd jonas-project
+
+
+### 3️⃣ Start the Containers
+
 docker compose up -d --build
 This starts:
 
@@ -30,7 +34,8 @@ Backend (Express) on port 8080
 Then seed mock data:
 
 docker compose exec backend node src/seed.js
-✅ You should see:
+
+### ✅ You should see:
 
 Seeded mock data.
 To confirm backend is running:
@@ -40,38 +45,39 @@ Response should be:
 
 { "ok": true }
 🖥 Frontend Setup (Vue)
-1️⃣ Install dependencies
+### 1️⃣ Install dependencies
 cd frontend
 npm install
-2️⃣ Configure API
+### 2️⃣ Configure API
 Create a .env file inside /frontend and add:
 
 VITE_API_BASE=http://localhost:8080
-3️⃣ Run the app
+### 3️⃣ Run the app
 npm run dev
 Open http://localhost:5173 in your browser.
 
 🧠 How It Works
-1️⃣ Upload a PDF Template
+### 1️⃣ Upload a PDF Template
 Upload a PDF (e.g. test-template-blank.pdf).
 
 The system reads and stores the file (with page count).
 
-2️⃣ Map Datapoints
+### 2️⃣ Map Datapoints
 Select datapoints such as company_name, invoice_date, etc.
 
 Drag and drop them onto the PDF preview.
 
 Click “Save Mapping”.
 
-3️⃣ Generate PDFs
+### 3️⃣ Generate PDFs
 Select one or multiple companies.
 
 Click “Generate” to create filled PDFs.
 
 The system returns a ZIP file with all generated PDFs.
 
-🧩 Backend Overview
+# 🧩 Backend Overview
+
 Tech Stack:
 
 Node.js
@@ -86,7 +92,7 @@ Multer
 
 Archiver
 
-Main API Endpoints
+### Main API Endpoints
 Method	Path	Description
 GET	/api/health	Health check
 GET	/api/companies	List all companies
@@ -98,7 +104,7 @@ POST	/api/templates/:id/mappings	Save mappings
 GET	/api/templates/:id/mappings	Fetch mappings
 POST	/api/templates/:id/generate	Generate filled PDFs (ZIP)
 
-🧰 Useful Commands
+### 🧰 Useful Commands
 Restart backend:
 
 docker compose restart backend
@@ -111,33 +117,8 @@ docker compose exec backend node src/seed.js
 Stop everything:
 
 docker compose down
-🌐 Sharing for Client Testing
-If your client wants to test without setting up locally:
 
-Option 1: LocalTunnel
-npx localtunnel --port 8080
-Option 2: ngrok (Recommended)
-bash
-Copy code
-ngrok config add-authtoken <your_token>
-ngrok http 8080
-Then update your frontend .env:
-
-VITE_API_BASE=https://your-public-tunnel-url
-Rebuild and redeploy:
-
-npm run build
-vercel --prod
-📄 Sample Test PDF
-Use test-template-blank.pdf for demo purposes.
-It includes empty lines for fields like:
-
-Company Name: ______________________
-Contact Name: ______________________
-Invoice Date: ______________________
-Upload it via the frontend to start testing PDF field mapping.
-
-✅ Developer Checklist
+### ✅ Developer Checklist
  Docker Desktop running
 
  Run docker compose up -d --build
@@ -150,7 +131,7 @@ Upload it via the frontend to start testing PDF field mapping.
 
  Generate + download filled ZIP works
 
-🧾 Notes
+### 🧾 Notes
 The backend automatically creates required database tables.
 
 Mock data includes 10 companies and 10 datapoints for testing.
